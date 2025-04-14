@@ -2,8 +2,7 @@
 
 **Nemotron4Free** is a lightweight Python wrapper for the [NEMOTRON](https://nemotron.one) chat API. It allows you to send prompts and receive responses easily — with optional streaming support.
 
-> ⚠️ No authentication or API key is required — the NEMOTRON API currently accepts any request, so `Nemotron4Free` works without login or account setup (I do not know why they force log-in but API open).
-> Creditless !
+> ⚠️ No authentication or API key is required — the NEMOTRON API currently accepts any request, so `Nemotron4Free` works without login or account setup.
 
 ---
 
@@ -77,6 +76,53 @@ User: Tell me a joke
 AI: Why don't scientists trust atoms?
     Because they make up everything.
 ```
+
+---
+
+# 🖼️ Image Generation
+
+Nemotron4Free also supports **image generation**. To use this feature, you must provide a **valid email address**. Without a valid email, the API will reject the request.
+
+### Example: Generate an Image
+```python
+from Nemotron import generate_image
+
+img_url = generate_image(
+    prompt="A futuristic city in the clouds",
+    model="black-forest-labs/flux-1.1-pro",
+    ratio="16:9",
+    format_="jpg",
+    email="your_valid_email@example.com"  # Replace with a valid email
+)
+
+if img_url:
+    print(f"Image URL: {img_url}")
+else:
+    print("Failed to generate the image. Please check your email or other parameters.")
+```
+
+### Available Models for Image Generation
+
+| Model Name                        | Description                     |
+|-----------------------------------|---------------------------------|
+| `black-forest-labs/flux-dev`      | Development version of Flux     |
+| `black-forest-labs/flux-pro`      | Professional version of Flux    |
+| `black-forest-labs/flux-schnell`  | Fast version of Flux            |
+| `black-forest-labs/flux-1.1-pro`  | Flux 1.1 Pro version            |
+| `black-forest-labs/flux-schnell`  | Another fast version of Flux    |
+
+### Parameters for Image Generation
+
+| Parameter | Type   | Default | Description                                           |
+|-----------|--------|---------|-------------------------------------------------------|
+| `prompt`  | `str`  | —       | The description of the image you want to generate.    |
+| `model`   | `str`  | —       | The model to use for image generation.               |
+| `ratio`   | `str`  | `1:1`   | Aspect ratio of the image (e.g., `16:9`, `4:3`).     |
+| `format_` | `str`  | `png`   | The format of the image (e.g., `jpg`, `png`).        |
+| `email`   | `str`  | —       | A valid email address required for image generation. |
+
+- ratio : `1:1 - 16:9 - 9:16 - 3:2 - 2:3`
+---
 
 # ✨ Author
 Created with ❤️ by Ramona-Flower
