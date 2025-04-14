@@ -57,14 +57,18 @@ response = ask("Hello, who are you?", stream=True, model="claude3_5") # nemotron
 | `claude3_5`     | Anthropic Claude 3.5       | ✅ (`stream=True`)  |
 | `gpt4o`         | OpenAI GPT-4 Omni          | ✅ (`stream=True`)  |
 
+## Claude 3.5 need premium account !
 
 🔧 Parameters
 
-| Parameter | Type   | Default | Description                                           | Model Supported        |
+| Parameter | Type   | Default | Description                                           | Info        |
 |-----------|--------|---------|-------------------------------------------------------|------------------------|
-| `content` | `str`  | —       | Your prompt or message to the AI.                    | `nemotron70b`, `claude3_5`, `gpt4o` |
-| `stream`  | `bool` | `False` | If `True`, prints the output live as it streams.      | `nemotron70b`, `claude3_5`, `gpt4o` |
-| `model`   | `str`  | `nemotron70b` | Specifies which model to use. Can be `nemotron70b`, `claude3_5`, or `gpt4o`. | `nemotron70b`, `claude3_5`, `gpt4o` |
+| `content` | `str`  | —       | Your prompt or message to the AI.                    | Work with `nemotron70b`, `claude3_5`, `gpt4o` |
+| `stream`  | `bool` | `False` | If `True`, prints the output live as it streams.      | Work with`nemotron70b`, `claude3_5`, `gpt4o` |
+| `model`   | `str`  | `nemotron70b` | Specifies which model to use. Can be `nemotron70b`, `claude3_5`, or `gpt4o`. | Nothing to say |
+| `name`    | `str`  | `"test"`       | Your name (optional). This is not required for the API but can be included for context. | `Useful for claude` |
+| `email`   | `str`  | `"test@gmail.com"` | Your email (optional). This is not required for the API but can be included for context. | `Useful for claude` | 
+
 
 🧪 Example Output
 ```
