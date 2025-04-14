@@ -77,7 +77,7 @@ AI: Why don't scientists trust atoms?
     Because they make up everything.
 ```
 
-✨ Author
+# ✨ Author
 Created with ❤️ by Ramona-Flower
 
 # ⭐ Feel Free to Star!
