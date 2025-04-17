@@ -129,5 +129,9 @@ else:
 # ✨ Author
 Created with ❤️ by Ramona-Flower
 
+# 📊 Stats
+
+[![PyPI Downloads](https://static.pepy.tech/badge/nemotron/week)](https://pepy.tech/projects/nemotron)
+
 # 📄 License
 Apache 2.0 License.
